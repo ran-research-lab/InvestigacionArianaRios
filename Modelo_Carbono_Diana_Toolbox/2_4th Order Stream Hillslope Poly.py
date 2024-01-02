@@ -85,23 +85,26 @@ StrmHillElev_3_=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonM
         # Process: Calculate Field (2) (Calculate Field) (management)
         BufferUnion_3_ = arcpy.management.CalculateField(in_table=BufferUnion_2_, field="StrOrder", expression="!GRID_CODE! + !GRID_CODE_1! + !GRID_CODE_12! + !GRID_CODE_12_13!", expression_type="PYTHON3", code_block="", field_type="TEXT")[0]
 
+        Subcatchment_Clip_Polygon = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\SubcatchmentClipPolygon"
+        arcpy.FeatureToPolygon_management(in_features=Subcatchment_Clip, out_feature_class=Subcatchment_Clip_Polygon)
+
         # Process: Identity (Identity) (analysis)
         StreamHillslope = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\streamhillslope"
-        arcpy.analysis.Identity(in_features=Subcatchment_Clip, identity_features=BufferUnion_3_, out_feature_class=StreamHillslope, join_attributes="ALL", cluster_tolerance="", relationship="NO_RELATIONSHIPS")
-
-        Chosen_Watershed_Elevation_Polygon = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Elevation_RioHondo_Polygon"
-        arcpy.FeatureToPolygon_management(in_features=Chosen_Watershed_Elevation, out_feature_class=Chosen_Watershed_Elevation_Polygon)
+        arcpy.analysis.Identity(in_features=Subcatchment_Clip_Polygon, identity_features=BufferUnion_3_, out_feature_class=StreamHillslope, join_attributes="ALL", cluster_tolerance="", relationship="NO_RELATIONSHIPS")
+        
+        StreamHillslope_Polygon = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\StreamHillslopePolygon"
+        arcpy.FeatureToPolygon_management(in_features=StreamHillslope, out_feature_class=StreamHillslope_Polygon)
 
         # Process: Identity (2) (Identity) (analysis)
         StreamHillslopeElev = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StreamHillslopeElev"
-        arcpy.analysis.Identity(in_features=Chosen_Watershed_Elevation, identity_features=StreamHillslope, out_feature_class=StreamHillslopeElev, join_attributes="ALL", cluster_tolerance="", relationship="NO_RELATIONSHIPS")
+        arcpy.analysis.Identity(in_features=Chosen_Watershed_Elevation, identity_features=StreamHillslope_Polygon, out_feature_class=StreamHillslopeElev, join_attributes="ALL", cluster_tolerance="", relationship="NO_RELATIONSHIPS")
 
         # Process: Select (4) (Select) (analysis)
         StreamHillslopeElevIdentiy_select2 = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StreamHillslopeElevIdentiy_select2"
         arcpy.analysis.Select(in_features=StreamHillslopeElev, out_feature_class=StreamHillslopeElevIdentiy_select2, where_clause="StrOrder > grid_code")
 
         # Process: Calculate Field (3) (Calculate Field) (management)
-        StreamHillslopeElevIdentiy_select2_3_ = arcpy.management.CalculateField(in_table=StreamHillslopeElevIdentiy_select2, field="StrOrder", expression="!grid_code!", expression_type="PYHTON3", code_block="", field_type="TEXT")[0]
+        StreamHillslopeElevIdentiy_select2_3_ = arcpy.management.CalculateField(in_table=StreamHillslopeElevIdentiy_select2, field="StrOrder", expression="!GRID_CODE!", expression_type="PYTHON", code_block="")[0]
 
         # Process: Select (6) (Select) (analysis)
         treamHillslopeElevIdentiy_select1 = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\treamHillslopeElevIdentiy_select1"
