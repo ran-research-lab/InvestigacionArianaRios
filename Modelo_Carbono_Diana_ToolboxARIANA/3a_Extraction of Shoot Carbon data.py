@@ -6,7 +6,15 @@ import arcpy
 from arcpy.sa import *
 from sys import argv
 
-def Model1(ShootCarb_table=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\ShootCarb_table", ShootCarbon=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput\ShootCarbon", shoot_C_log_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\shoot_C_log_final", StrmHillElev=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StrmHillElev"):  # 3a_Extraction of Shoot Carbon data
+output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput"
+output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
+
+ShootCarb_table=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\ShootCarb_table"
+ShootCarbon=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput\ShootCarbon"
+shoot_C_log_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\shoot_C_log_final" 
+StrmHillElev=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StrmHillElev"
+
+def Model1(ShootCarb_table, ShootCarbon, shoot_C_log_final, StrmHillElev):  # 3a_Extraction of Shoot Carbon data
 
     # To allow overwriting outputs change overwriteOutput option to True.
     arcpy.env.overwriteOutput = False
@@ -26,7 +34,7 @@ def Model1(ShootCarb_table=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonMod
         arcpy.management.MakeFeatureLayer(in_features=StrmHillElev, out_layer=StrmHillElev_Layer, where_clause="", workspace="", field_info="OBJECTID OBJECTID VISIBLE NONE;Shape Shape VISIBLE NONE;FID_Elevation_RioHondo FID_Elevation_RioHondo VISIBLE NONE;Id Id VISIBLE NONE;gridcode gridcode VISIBLE NONE;HydroID HydroID VISIBLE NONE;GridID GridID VISIBLE NONE;NextDownID NextDownID VISIBLE NONE;OBJECTID_1 OBJECTID_1 VISIBLE NONE;arcid arcid VISIBLE NONE;grid_code grid_code VISIBLE NONE;from_node from_node VISIBLE NONE;to_node to_node VISIBLE NONE;DrainID DrainID VISIBLE NONE;Shape_Leng Shape_Leng VISIBLE NONE;StrOrder StrOrder VISIBLE NONE;Shape_Length Shape_Length VISIBLE NONE;Shape_Area Shape_Area VISIBLE NONE")
 
         # Process: Raster Calculator (Raster Calculator) (sa)
-        ShootC100 = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput\ShootC100"
+        ShootC100 = output_directory_raster + r"\ShootC100"
         # Assuming shoot_C_log_final is a path to a raster
         Raster_Calculator = ShootC100
         shoot_C_log_raster = Raster(shoot_C_log_final) # Load the raster
@@ -35,7 +43,7 @@ def Model1(ShootCarb_table=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonMod
 
 
         # Process: Int (Int) (sa)
-        ShootC100int = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput\ShootC100int"
+        ShootC100int = output_directory_raster + r"\ShootC100int"
         Int = ShootC100int
         ShootC100int = arcpy.sa.Int(in_raster_or_constant=ShootC100)
         ShootC100int.save(Int)
