@@ -6,13 +6,13 @@ import arcpy
 from arcpy.sa import *
 from sys import argv
 
-output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3cOutput"
-output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
+# output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3cOutput"
+# output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
 
-roots_C_hf_log_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\roots_C_hf_log_final"
-StrmHillElev=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StrmHillElev"
+# roots_C_hf_log_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\roots_C_hf_log_final"
+# StrmHillElev=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StrmHillElev"
 
-def Model6(roots_C_hf_log_final, StrmHillElev):  # 3c_Extraction of Root Carbon data
+def Model6(roots_C_hf_log_final, StrmHillElev, output_directory, output_directory_raster):  # 3c_Extraction of Root Carbon data
 
     # To allow overwriting outputs change overwriteOutput option to True.
     arcpy.env.overwriteOutput = False

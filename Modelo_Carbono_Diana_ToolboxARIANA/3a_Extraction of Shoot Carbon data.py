@@ -6,15 +6,15 @@ import arcpy
 from arcpy.sa import *
 from sys import argv
 
-output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput"
-output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
+# output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput"
+# output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
 
-ShootCarb_table=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\ShootCarb_table"
-ShootCarbon=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput\ShootCarbon"
-shoot_C_log_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\shoot_C_log_final" 
-StrmHillElev=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StrmHillElev"
+# ShootCarb_table=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\ShootCarb_table"
+# ShootCarbon=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3aOutput\ShootCarbon"
+# shoot_C_log_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\shoot_C_log_final" 
+# StrmHillElev=r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model2Output\StrmHillElev"
 
-def Model1(ShootCarb_table, ShootCarbon, shoot_C_log_final, StrmHillElev):  # 3a_Extraction of Shoot Carbon data
+def Model1(ShootCarb_table, ShootCarbon, shoot_C_log_final, StrmHillElev, output_directory, output_directory_raster):  # 3a_Extraction of Shoot Carbon data
 
     # To allow overwriting outputs change overwriteOutput option to True.
     arcpy.env.overwriteOutput = False

@@ -6,13 +6,13 @@ import arcpy
 from arcpy.sa import *
 from sys import argv
 
-output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3bOutput"
-output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
+# output_directory = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\Model3bOutput"
+# output_directory_raster = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb"
 
-ShootC100int = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\ShootC100int"
-soil_C_log_hf_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\soil_C_log_hf_final"
+# ShootC100int = r"C:\Users\taller\Documents\ArcGIS\Projects\PythonModels\PythonModels.gdb\ShootC100int"
+# soil_C_log_hf_final=r"C:\Users\taller\Desktop\ArianaRiosArcGIS\PythonModels\Modelo_Carbono_Diana_Data\Datos_Carbono\BioclimClipPRSLM_V1_sa_units800.gdb\soil_C_log_hf_final"
 
-def Model4(soil_C_log_hf_final):  # 3b_Extraction of Soil Carbon data
+def Model4(soil_C_log_hf_final, output_directory, output_directory_raster):  # 3b_Extraction of Soil Carbon data
 
     # To allow overwriting outputs change overwriteOutput option to True.
     arcpy.env.overwriteOutput = False
